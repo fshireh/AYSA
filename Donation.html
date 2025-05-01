@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate - AYSA Kent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --cream: #F5F5DC;
+      --white: #FFFFFF;
+      --black: #000000;
+      --gold: #D4AF37;
+      --dark-cream: #E8E4C9;
+      --light-gray: #F8F8F8;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    /* Header Styles */
+    .navbar {
+      background-color: var(--white);
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    .navbar-brand img {
+      height: 50px;
+    }
+
+    .nav-link {
+      color: var(--black);
+      font-weight: 500;
+      margin: 0 10px;
+      padding: 8px 15px;
+      transition: all 0.3s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+    }
+
+    .btn-register {
+      background-color: var(--black);
+      color: var(--white);
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-register:hover {
+      background-color: var(--gold);
+      color: var(--black);
+    }
+
+    /* Hero Section */
+    .donation-hero {
+      padding-top: 100px;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/page-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .donation-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .donation-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    /* Donation Section */
+    .donation-section {
+      padding: 80px 0;
+    }
+
+    .donation-card {
+      background-color: var(--white);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+
+    .donation-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .donation-amount {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .donation-amount input[type="radio"] {
+      display: none;
+    }
+
+    .donation-amount label {
+      display: block;
+      padding: 15px 20px;
+      background-color: var(--cream);
+      border: 2px solid var(--dark-cream);
+      border-radius: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .donation-amount input[type="radio"]:checked + label {
+      background-color: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    .donation-amount label:hover {
+      border-color: var(--gold);
+    }
+
+    .custom-amount {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .custom-amount input {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid var(--dark-cream);
+      border-radius: 30px;
+      font-size: 1rem;
+    }
+
+    .custom-amount input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-donate {
+      background-color: var(--black);
+      color: var(--white);
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .btn-donate:hover {
+      background-color: var(--gold);
+      color: var(--black);
+    }
+
+    .impact-section {
+      padding: 60px 0;
+      background-color: var(--white);
+    }
+
+    .impact-card {
+      background-color: var(--cream);
+      border-radius: 15px;
+      padding: 30px;
+      height: 100%;
+      text-align: center;
+    }
+
+    .impact-card i {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .impact-card h3 {
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--black);
+      color: var(--white);
+      padding: 80px 0 30px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .social-icons a {
+      color: var(--white);
+      font-size: 1.2rem;
+      margin: 0 10px;
+      transition: all 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--gold);
+      transform: translateY(-5px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .donation-hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .donation-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .donation-hero p {
+        font-size: 1rem;
+      }
+      
+      .donation-amount {
+        min-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg py-1 sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="images/logo-circle.jpeg" alt="" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="Index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="AboutUs.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Index.html#programs">Programs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="Donation.html">Donate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="Events.html">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ContactUs.html">Contact Us</a>
+        </li>
+      </ul>
+      <a href="Registration.html" class="btn btn-register ms-lg-3 mt-3 mt-lg-0">Registration</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="donation-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>Support Our Youth Athletes</h1>
+        <p>Your donation helps provide equipment, training facilities, and opportunities for young athletes in our community to grow and succeed both on and off the field.</p>
+        <a href="#donate-now" class="btn btn-dark btn-lg">Donate Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Donation Form Section -->
+<section class="donation-section" id="donate-now">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="donation-card">
+          <h2 class="text-center mb-4">Make a Donation</h2>
+          
+          <div class="mb-4">
+            <h4>Select Amount</h4>
+            <div class="donation-options">
+              <div class="donation-amount">
+                <input type="radio" id="amount-25" name="donation-amount" value="25">
+                <label for="amount-25">$25</label>
+              </div>
+              <div class="donation-amount">
+                <input type="radio" id="amount-50" name="donation-amount" value="50">
+                <label for="amount-50">$50</label>
+              </div>
+              <div class="donation-amount">
+                <input type="radio" id="amount-100" name="donation-amount" value="100">
+                <label for="amount-100">$100</label>
+              </div>
+              <div class="donation-amount">
+                <input type="radio" id="amount-250" name="donation-amount" value="250">
+                <label for="amount-250">$250</label>
+              </div>
+            </div>
+            
+            <div class="custom-amount">
+              <h4>Or enter custom amount</h4>
+              <input type="number" placeholder="$ Other amount" min="1">
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <h4>Payment Information</h4>
+            <div class="mb-3">
+              <label for="card-name" class="form-label">Name on Card</label>
+              <input type="text" class="form-control" id="card-name" placeholder="Full name">
+            </div>
+            <div class="mb-3">
+              <label for="card-number" class="form-label">Card Number</label>
+              <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="card-expiry" class="form-label">Expiration Date</label>
+                <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="card-cvc" class="form-label">CVC</label>
+                <input type="text" class="form-control" id="card-cvc" placeholder="CVC">
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="recurring-donation">
+            <label class="form-check-label" for="recurring-donation">
+              Make this a monthly recurring donation
+            </label>
+          </div>
+          
+          <button type="submit" class="btn-donate">Donate Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Impact Section -->
+<section class="impact-section">
+  <div class="container">
+    <h2 class="text-center mb-5">Your Donation Makes an Impact</h2>
+    
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="impact-card">
+          <i class="fas fa-tshirt"></i>
+          <h3>Equipment</h3>
+          <p>$50 provides a full uniform for one athlete</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="impact-card">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Scholarships</h3>
+          <p>$250 sponsors one child's participation for a season</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="impact-card">
+          <i class="fas fa-home"></i>
+          <h3>Facilities</h3>
+          <p>$1000 helps maintain our training facilities</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col-md-6 mb-4">
+        <div class="impact-card">
+          <i class="fas fa-bus"></i>
+          <h3>Transportation</h3>
+          <p>$500 covers team transportation for away games</p>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="impact-card">
+          <i class="fas fa-utensils"></i>
+          <h3>Nutrition</h3>
+          <p>$300 provides healthy snacks for a team for a month</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <div class="footer-logo">AYSA Kent</div>
+        <p>Contact: ali.Abdulla@africanysa.org | 206-355-9280</p>
+        <div class="social-icons mb-4">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p><small>© 2024 African Youth Sports Academy - AYSA Kent</small></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Simple JavaScript for smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+</body>
+</html>

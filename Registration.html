@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - AYSA Kent | African Youth Sports Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Select2 for enhanced dropdowns -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F5F5DC;
+            --white: #FFFFFF;
+            --black: #000000;
+            --gold: #D4AF37;
+            --dark-cream: #E8E4C9;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--black);
+        }
+        
+        .nav-link {
+            color: var(--black);
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover, 
+        .nav-link.active {
+            color: var(--gold);
+        }
+        
+        .nav-link.active:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 2px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 20%;
+        }
+
+        .btn-register {
+            background-color: var(--black);
+            color: var(--white);
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            }
+
+            .btn-register:hover {
+            background-color: var(--gold);
+            color: var(--black);
+            }
+        
+        .btn-primary {
+            background-color: var(--black);
+            border-color: var(--black);
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/page-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* Registration Form Styles */
+        .registration-section {
+            padding: 60px 0;
+        }
+        
+        .registration-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            color: var(--black);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .form-header p {
+            color: var(--black);
+            opacity: 0.8;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+        
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+        }
+        
+        .required-field::after {
+            content: " *";
+            color: #dc3545;
+        }
+        
+        .submit-btn {
+            background-color: var(--black);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        /* Custom Select2 styling */
+        .select2-container--default .select2-selection--single {
+            height: 46px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 44px;
+            padding-left: 15px;
+        }
+        
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 44px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .social a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .back-to-top {
+            position: absolute;
+            top: -25px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg py-1 sticky-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="images/logo-circle.jpeg" alt="" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="Index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="AboutUs.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Index.html#programs">Programs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Donation.html">Donate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="Events.html">Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="ContactUs.html">Contact Us</a>
+              </li>
+            </ul>
+            <a href="Registration.html" class="btn btn-register ms-lg-3 mt-3 mt-lg-0 active">Registration</a>
+          </div>
+        </div>
+      </nav>
+
+    <!-- Registration Page Header -->
+    <div class="page-header" data-aos="fade">
+        <div class="container text-center">
+            <h1>AYSA Kent Registration</h1>
+            <p class="lead">Join our sports programs for African youth in South King County</p>
+        </div>
+    </div>
+
+    <div class="registration-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="registration-card" data-aos="fade-up">
+                        <div class="form-header">
+                            <h2>Player Registration Form</h2>
+                            <p>Please complete all required fields to register your child for AYSA Kent programs</p>
+                        </div>
+                        
+                        <form id="registrationForm">
+                            <h4 class="mb-4" style="color: var(--gold);">Child Information</h4>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="childFirstName" class="form-label required-field">Child's First Name</label>
+                                    <input type="text" class="form-control" id="childFirstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="childLastName" class="form-label required-field">Child's Last Name</label>
+                                    <input type="text" class="form-control" id="childLastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="childDob" class="form-label required-field">Date of Birth</label>
+                                    <input type="date" class="form-control" id="childDob" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="childGender" class="form-label required-field">Gender</label>
+                                    <select class="form-select" id="childGender" required>
+                                        <option value="" selected disabled>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <h4 class="mb-4 mt-5" style="color: var(--gold);">Parent/Guardian Information</h4>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="parentFirstName" class="form-label required-field">Parent/Guardian First Name</label>
+                                    <input type="text" class="form-control" id="parentFirstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="parentLastName" class="form-label required-field">Parent/Guardian Last Name</label>
+                                    <input type="text" class="form-control" id="parentLastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="parentEmail" class="form-label required-field">Email Address</label>
+                                    <input type="email" class="form-control" id="parentEmail" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="parentPhone" class="form-label required-field">Phone Number</label>
+                                    <input type="tel" class="form-control" id="parentPhone" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="parentAddress" class="form-label required-field">Street Address</label>
+                                <input type="text" class="form-control" id="parentAddress" required>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-4 mb-3">
+                                    <label for="parentCity" class="form-label required-field">City</label>
+                                    <input type="text" class="form-control" id="parentCity" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="parentState" class="form-label required-field">State</label>
+                                    <select class="form-select" id="parentState" required>
+                                        <option value="WA" selected>Washington</option>
+                                        <!-- Other states can be added here -->
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="parentZip" class="form-label required-field">ZIP Code</label>
+                                    <input type="text" class="form-control" id="parentZip" required>
+                                </div>
+                            </div>
+                            
+                            <h4 class="mb-4 mt-5" style="color: var(--gold);">Program Information</h4>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-12 mb-3">
+                                    <label for="sportInterest" class="form-label required-field">Sport of Interest</label>
+                                    <select class="form-select select2" id="sportInterest" required>
+                                        <option value="" selected disabled>Select Sport</option>
+                                        <option value="Soccer">Soccer</option>
+                                        <option value="Basketball">Basketball</option>
+                                        <option value="Track and Field">Track and Field</option>
+                                        <option value="Volleyball">Volleyball</option>
+                                        <option value="Swimming">Swimming</option>
+                                        <option value="Multi-Sport Program">Multi-Sport Program</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="experienceLevel" class="form-label required-field">Experience Level</label>
+                                    <select class="form-select" id="experienceLevel" required>
+                                        <option value="" selected disabled>Select Level</option>
+                                        <option value="Beginner">Beginner (0-1 years experience)</option>
+                                        <option value="Intermediate">Intermediate (1-3 years experience)</option>
+                                        <option value="Advanced">Advanced (3+ years experience)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="season" class="form-label required-field">Season</label>
+                                    <select class="form-select" id="season" required>
+                                        <option value="" selected disabled>Select Season</option>
+                                        <option value="Fall 2023">Fall 2023</option>
+                                        <option value="Winter 2023-24">Winter 2023-24</option>
+                                        <option value="Spring 2024">Spring 2024</option>
+                                        <option value="Summer 2024">Summer 2024</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <h4 class="mb-4 mt-5" style="color: var(--gold);">Health Information</h4>
+                            
+                            <div class="mb-4">
+                                <label for="healthConditions" class="form-label">Known Health Conditions or Allergies</label>
+                                <textarea class="form-control" id="healthConditions" rows="3" placeholder="Please list any health conditions, allergies, or special needs we should be aware of"></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="emergencyContact" class="form-label required-field">Emergency Contact Name & Number</label>
+                                <input type="text" class="form-control" id="emergencyContact" required>
+                            </div>
+                            
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="photoRelease" required>
+                                <label class="form-check-label" for="photoRelease">
+                                    I grant AYSA Kent permission to use photos/videos of my child for promotional purposes
+                                </label>
+                            </div>
+                            
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="liabilityWaiver" required>
+                                <label class="form-check-label" for="liabilityWaiver">
+                                    I acknowledge and accept the <a href="#" data-bs-toggle="modal" data-bs-target="#waiverModal">liability waiver</a>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary submit-btn">Submit Registration</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waiver Modal -->
+    <div class="modal fade" id="waiverModal" tabindex="-1" aria-labelledby="waiverModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="waiverModalLabel">AYSA Kent Liability Waiver</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>I, the parent/guardian of the registered participant, acknowledge and agree:</p>
+                    <ol>
+                        <li>I understand that participation in AYSA Kent programs involves inherent risks of physical injury.</li>
+                        <li>I voluntarily assume all risks associated with participation in AYSA Kent activities.</li>
+                        <li>I release AYSA Kent, its staff, and volunteers from any liability for injuries or damages.</li>
+                        <li>I authorize emergency medical treatment if necessary when I cannot be reached.</li>
+                        <li>I certify that my child is physically fit to participate in the selected sports program.</li>
+                    </ol>
+                    <p>By checking the box on the registration form, I acknowledge that I have read and agree to this waiver.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-logo">AYSA Kent</div>
+                    <p>African Youth Sports Academy serving South King County</p>
+                    <p>20804 International Blvd<br>SeaTac, WA 98198</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white">About Us</a></li>
+                        <li><a href="programs.html" class="text-white">Programs</a></li>
+                        <li><a href="registration.html" class="text-white">Registration</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Contact</h5>
+                    <p>ali.Abdulla@africanysa.org<br>
+                    (206) 355-9280</p>
+                    <div class="social mt-3">
+                        <a href="https://www.facebook.com/africanysa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/africanysa/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/AfricanYSA" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/africanysa/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 African Youth Sports Academy - AYSA Kent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Form Validation -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Initialize Select2
+        $(document).ready(function() {
+            $('.select2').select2({
+                width: '100%',
+                placeholder: $(this).data('placeholder')
+            });
+            
+            // Form validation
+            $("#registrationForm").validate({
+                errorClass: "is-invalid",
+                validClass: "is-valid",
+                errorPlacement: function(error, element) {
+                    if (element.hasClass("select2-hidden-accessible")) {
+                        error.insertAfter(element.next(".select2-container"));
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                submitHandler: function(form) {
+                    // Form submission logic would go here
+                    alert('Registration submitted successfully!');
+                    form.reset();
+                    $('.select2').val(null).trigger('change');
+                    return false; // Prevent actual form submission for this demo
+                }
+            });
+        });
+        
+        // Back to top button
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 200) {
+                $('.back-to-top').fadeIn();
+            } else {
+                $('.back-to-top').fadeOut();
+            }
+        });
+        
+        $('.back-to-top').click(function(){
+            $('html, body').animate({scrollTop : 0}, 800);
+            return false;
+        });
+    </script>
+</body>
+</html>
